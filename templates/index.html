@@ -1,0 +1,194 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Career & Skill Recommendation System</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="header">
+            <p class="badge">AI-POWERED CAREER GUIDANCE</p>
+
+            <h1>AI Career & Skill<br>Recommendation System</h1>
+
+            <p class="description">
+                Discover the career path that best matches your skills,
+                interests, and career goals.
+            </p>
+        </div>
+
+
+        <div class="form-card">
+
+            <h2>Enter Your Details</h2>
+
+            <p class="form-description">
+                Tell us about your current skills and interests.
+            </p>
+
+            <form method="POST">
+
+                <label for="name">Your Name</label>
+
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Enter your name"
+                    required
+                >
+
+
+                <label for="skills">Your Skills</label>
+
+                <input
+                    type="text"
+                    id="skills"
+                    name="skills"
+                    placeholder="Example: Python, SQL, Excel"
+                    required
+                >
+
+                <small>
+                    Separate multiple skills with commas.
+                </small>
+
+
+                <label for="interest">Your Interest</label>
+
+                <input
+                    type="text"
+                    id="interest"
+                    name="interest"
+                    placeholder="Example: Data Analysis"
+                    required
+                >
+
+
+                <button type="submit">
+                    Find My Career
+                </button>
+
+            </form>
+
+        </div>
+
+
+        {% if recommendation %}
+
+        <div class="result">
+
+            <p class="result-label">YOUR CAREER RECOMMENDATION</p>
+
+            <h2>Hi {{ name }}!</h2>
+
+            <p class="result-description">
+                Based on your skills and interests, your recommended
+                career is:
+            </p>
+
+            <div class="career-card">
+
+                <h3>{{ recommendation }}</h3>
+
+                <p class="match-score">
+                    Career Match:
+                    <strong>{{ match_percentage }}%</strong>
+                </p>
+                <p class="match-level">
+                     {{ match_level }}
+                </p>
+
+                <div class="progress-bar">
+                    <div
+                        class="progress-fill"
+                        style="width: {{ match_percentage }}%;">
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="reason-box">
+
+                <h3>Why This Career?</h3>
+
+                <p class="reason">
+                    {{ reason }}
+                </p>
+
+            </div>
+
+
+            <div class="skills-section">
+
+                <h3>Your Matching Skills</h3>
+
+                <div class="skill-list">
+
+                    {% for skill in matched_skills %}
+
+                    <span class="skill-badge">
+                        {{ skill }}
+                    </span>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+
+            <div class="skills-section">
+
+                <h3>Recommended Skills to Learn</h3>
+
+                <div class="learning-list">
+
+                    {% for skill in recommended_skills %}
+
+                    <div class="learning-item">
+                        <span class="check">✓</span>
+                        <span>{{ skill }}</span>
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+
+            <a href="/" class="reset-button">
+                Try Again
+            </a>
+
+        </div>
+
+        {% endif %}
+
+
+        <footer>
+            <p>
+                AI Career & Skill Recommendation System
+            </p>
+            <span>
+                Built with Python & Flask
+            </span>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>
+```
